@@ -12,7 +12,11 @@
     "@types/react-dom": "^18.0.10",
     "babel-loader": "^9.1.0",
     "core-js": "^3.26.1",
+    "eslint": "^8.30.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.2.1",
     "html-webpack-plugin": "^5.5.0",
+    "prettier": "^2.8.1",
     "regenerator-runtime": "^0.13.11",
     "typescript": "^4.9.4",
     "webpack": "^5.75.0",
@@ -26,6 +30,9 @@
     "dev": "webpack serve --open --config config/webpack/webpack.dev.js",
     "build": "webpack --config config/webpack/webpack.prod.js",
     "tscheck": "tsc",
+    "lint": "eslint .",
+    "lint:fix": "eslint --fix",
+    "format": "prettier --write './**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
