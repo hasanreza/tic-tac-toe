@@ -1,22 +1,21 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   entry: {
-    app: path.resolve(__dirname, "../../src/index.tsx"),
+    app: path.resolve(__dirname, '../../src/index.tsx')
   },
 
   plugins: [
     new HtmlWebpackPlugin({
-      title: "Production",
-      template: "./src/index.html",
-    }),
+      template: './src/index.html'
+    })
   ],
 
   output: {
-    filename: "[name].bundle.js",
-    path: path.resolve(__dirname, "../../public"),
-    clean: true,
+    filename: '[name].bundle.js',
+    path: path.resolve(__dirname, '../../public'),
+    clean: true
   },
 
   module: {
@@ -25,13 +24,20 @@ module.exports = {
         test: /\.(js|ts)x?$/,
         exclude: /node_modules/,
         use: {
-          loader: "babel-loader",
-        },
+          loader: 'babel-loader'
+        }
       },
-    ],
+      {
+        test: /\.(woff|woff2|eot|ttf|svg)$/,
+        type: 'asset/resource',
+        generator: {
+          filename: './fonts/[name][ext]'
+        }
+      }
+    ]
   },
 
   resolve: {
-    extensions: [".tsx", ".ts", ".jsx", ".js"],
-  },
+    extensions: ['.tsx', '.ts', '.jsx', '.js']
+  }
 };

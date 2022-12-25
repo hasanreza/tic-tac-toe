@@ -1,2 +1,4 @@
-import React from "react";
-export const App: React.FC = () => <h1>Hello React</h1>;
+import React from 'react';
+import './app.scss';
+
+export const App: React.FC = () => <h1>سلام جوون ایرانی | hi there</h1>;
