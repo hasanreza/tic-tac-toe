@@ -11,6 +11,7 @@
     "@types/react": "^18.0.26",
     "@types/react-dom": "^18.0.10",
     "babel-loader": "^9.1.0",
+    "babel-plugin-root-import": "^6.6.0",
     "core-js": "^3.26.1",
     "css-loader": "^6.7.3",
     "eslint": "^8.30.0",
@@ -33,7 +34,7 @@
   "scripts": {
     "start": "npm run dev",
     "dev": "webpack serve --open --config config/webpack/webpack.dev.js",
-    "build": "webpack serve --open --config config/webpack/webpack.prod.js",
+    "build": "webpack --config config/webpack/webpack.prod.js",
     "tscheck": "tsc",
     "lint": "eslint .",
     "lint:fix": "eslint --fix",

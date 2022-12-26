@@ -9,5 +9,14 @@
       }
     ],
     "@babel/preset-react"
+  ],
+  "plugins": [
+    [
+      "babel-plugin-root-import",
+      {
+        "rootPathPrefix": "~",
+        "rootPathSuffix": "src"
+      }
+    ]
   ]
 }
