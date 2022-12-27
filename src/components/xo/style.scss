@@ -10,16 +10,9 @@ $stroke-width: 10px;
     position: relative;
     display: inline-block;
 }
-.logo {
-    .x,
-    .o {
-        width: $size * 0.65;
-        height: $size * 0.65;
-    }
-}
 
 .x {
-    bottom: $size * 0.1;
+    bottom: 5%;
     &::before,
     &::after {
         content: '';

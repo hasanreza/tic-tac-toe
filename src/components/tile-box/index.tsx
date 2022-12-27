@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ITileBoxProps, ITileBoxState, ITileData } from '~/types';
-import isVertical from '~/utilities/isVertical';
+import isVertical from '~/utils/isVertical';
 
 /**
  * import styles

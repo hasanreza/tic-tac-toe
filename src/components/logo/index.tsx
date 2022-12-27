@@ -1,9 +1,14 @@
 import * as React from 'react';
-import XO from '../xo';
+
+/**
+ * import styles
+ */
+import './style.scss';
 
 /**
  * import components
  */
+import XO from '../xo';
 
 const Logo = () => {
     return (

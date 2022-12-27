@@ -19,6 +19,8 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
     }
 
     render() {
+        console.log('game render');
+
         return (
             <div
                 className="position-absolute h-100 top-0 start-0 end-0 mx-auto py-3"
@@ -55,7 +57,9 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
 
         window.addEventListener('resize', () => {
             clearTimeout(timeout);
-            timeout = window.setTimeout(() => this.setState({ width: this.calcWidth() }), delay);
+            const newWidth = this.calcWidth();
+            if (newWidth != this.state.width)
+                timeout = window.setTimeout(() => this.setState({ width: newWidth }), delay);
         });
     };
 

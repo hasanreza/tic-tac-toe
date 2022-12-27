@@ -10,10 +10,13 @@ import './style.scss';
  * import components
  */
 
-const XO = (props: IXOProps) => {
-    if (['x', 'o'].indexOf(props.value) < 0) throw new Error('value must be wether "O" or "X"');
+class XO extends React.PureComponent<IXOProps> {
+    render() {
+        if (['x', 'o'].indexOf(this.props.value) < 0)
+            throw new Error('value must be wether "O" or "X"');
 
-    return <span className={props.value} />;
-};
+        return <span className={this.props.value} />;
+    }
+}
 
 export default XO;
