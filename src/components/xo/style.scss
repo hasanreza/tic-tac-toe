@@ -32,3 +32,21 @@
     box-shadow: 0 0 0px $xo-stroke-width $secondary inset;
     border-radius: 50%;
 }
+
+.label {
+    .x,
+    .o {
+        width: $xo-size * $label-icon-scale;
+        height: $xo-size * $label-icon-scale;
+    }
+    .x {
+        &::after,
+        &::before {
+            background-color: $dark;
+            height: $xo-stroke-width * $label-icon-scale;
+        }
+    }
+    .o {
+        box-shadow: 0 0 0px $xo-stroke-width * $label-icon-scale $dark inset;
+    }
+}

@@ -11,6 +11,8 @@ import './style.scss';
 import TileBox from '../tile-box';
 import { IGameState, ITileData } from '~/types';
 import Header from '../header';
+import Footer from '../footer';
+import checkResult from '~/utils/check-result';
 
 class Game extends React.Component<Readonly<{}>, IGameState> {
     constructor(props: any) {
@@ -28,12 +30,15 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
                 className="position-absolute h-100 top-0 start-0 end-0 mx-auto py-3"
                 style={{ width: this.state.width }}>
                 <Header turn={this.state.turn} onReset={() => this.reset()} />
+
                 <TileBox
                     width={this.state.width}
                     turn={this.state.turn}
                     onTileClick={this.handleTileClick}
                     data={this.state.data}
                 />
+
+                <Footer></Footer>
             </div>
         );
     }
@@ -99,6 +104,7 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
         newData[index].value = this.state.turn;
         this.setState({ data: newData });
 
+        // if (checkResult(newData))
         this.switchTurn();
     };
 }

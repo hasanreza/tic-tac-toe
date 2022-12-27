@@ -11,10 +11,12 @@ declare module '*.webp';
 interface IComponentProps {
     children?: ReactNode;
 }
+interface IElementProps {
+    className?: string;
+}
 
-export interface IBoxProps extends IComponentProps {
+export interface IBoxProps extends IComponentProps, IElementProps {
     size: number;
-    className: string;
 }
 export interface IBoxState {
     size: number;
@@ -52,7 +54,7 @@ export interface IGameState {
     data: ITileData[];
 }
 
-export interface IButtonProps extends IComponentProps {
+export interface IButtonProps extends IComponentProps, IElementProps {
     onClick: () => void;
-    className?: string;
 }
+export interface ILabelProps extends IComponentProps, IElementProps {}
