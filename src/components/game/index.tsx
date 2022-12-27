@@ -13,6 +13,7 @@ import { IGameState, ITileData } from '~/types';
 import Header from '../header';
 import Footer from '../footer';
 import checkResult from '~/utils/check-result';
+import Overlay from '../overlay';
 
 class Game extends React.Component<Readonly<{}>, IGameState> {
     constructor(props: any) {
@@ -20,26 +21,33 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
         this.state = {
             width: this.calcWidth(),
             turn: this.pickTurn(),
-            data: this.generateTileStates()
+            data: this.generateTileStates(),
+            active: false
         };
     }
 
     render() {
         return (
-            <div
-                className="position-absolute h-100 top-0 start-0 end-0 mx-auto py-3"
-                style={{ width: this.state.width }}>
-                <Header turn={this.state.turn} onReset={() => this.reset()} />
+            <>
+                <div
+                    className="position-absolute h-100 top-0 start-0 end-0 mx-auto py-3"
+                    style={{ width: this.state.width }}>
+                    <Header turn={this.state.turn} onReset={() => this.reset()} />
 
-                <TileBox
-                    width={this.state.width}
-                    turn={this.state.turn}
-                    onTileClick={this.handleTileClick}
-                    data={this.state.data}
-                />
+                    <TileBox
+                        width={this.state.width}
+                        turn={this.state.turn}
+                        onTileClick={this.handleTileClick}
+                        data={this.state.data}
+                    />
 
-                <Footer></Footer>
-            </div>
+                    <Footer></Footer>
+
+                    <Overlay show={!this.state.active} onClick={this.handleOverlayClick}>
+                        <div className="h1 text-primary">Start</div>
+                    </Overlay>
+                </div>
+            </>
         );
     }
 
@@ -106,6 +114,10 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
 
         // if (checkResult(newData))
         this.switchTurn();
+    };
+
+    handleOverlayClick = () => {
+        this.setState({ active: true });
     };
 }
 

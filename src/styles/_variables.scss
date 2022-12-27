@@ -20,3 +20,9 @@ $xo-size: 50px;
 $xo-stroke-width: 12px;
 
 $label-icon-scale: 0.4;
+
+$transition-time: 0.25s;
+$transition-fadeOut: width $transition-time $transition-time,
+    height $transition-time $transition-time, opacity $transition-time;
+
+$transition-fadeIn: opacity $transition-time;

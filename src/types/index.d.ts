@@ -13,6 +13,7 @@ interface IComponentProps {
 }
 interface IElementProps {
     className?: string;
+    onClick?: () => void;
 }
 
 export interface IBoxProps extends IComponentProps, IElementProps {
@@ -52,9 +53,11 @@ export interface IGameState {
     width: number;
     turn: string;
     data: ITileData[];
+    active: boolean;
 }
 
-export interface IButtonProps extends IComponentProps, IElementProps {
-    onClick: () => void;
-}
+export interface IButtonProps extends IComponentProps, IElementProps {}
 export interface ILabelProps extends IComponentProps, IElementProps {}
+export interface IOverlayProps extends IComponentProps, IElementProps {
+    show: boolean;
+}
