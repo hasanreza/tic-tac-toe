@@ -9,27 +9,30 @@ import './style.scss';
  * import components
  */
 import TileBox from '../tile-box';
-import { IGameState } from '~/types';
+import { IGameState, ITileData } from '~/types';
 import Header from '../header';
 
 class Game extends React.Component<Readonly<{}>, IGameState> {
     constructor(props: any) {
         super(props);
-        this.state = { width: this.calcWidth(), turn: this.pickTurn() };
+        this.state = {
+            width: this.calcWidth(),
+            turn: this.pickTurn(),
+            data: this.generateTileStates()
+        };
     }
 
     render() {
-        console.log('game render');
-
         return (
             <div
                 className="position-absolute h-100 top-0 start-0 end-0 mx-auto py-3"
                 style={{ width: this.state.width }}>
-                <Header turn={this.state.turn} />
+                <Header turn={this.state.turn} onReset={() => this.reset()} />
                 <TileBox
                     width={this.state.width}
                     turn={this.state.turn}
-                    onClick={this.switchTurn}
+                    onTileClick={this.handleTileClick}
+                    data={this.state.data}
                 />
             </div>
         );
@@ -70,6 +73,31 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
 
     switchTurn = () => {
         this.setState({ turn: this.state.turn == 'x' ? 'o' : 'x' });
+    };
+
+    reset = () => {
+        this.setState({ data: this.generateTileStates() });
+    };
+
+    generateTileStates = () => {
+        return [...Array(9).keys()].map((index) => {
+            const tileData: ITileData = {
+                id: index,
+                value: null
+            };
+
+            return tileData;
+        });
+    };
+
+    handleTileClick = (index: number) => {
+        if (this.state.data[index].value) return;
+
+        const newData = [...this.state.data];
+        newData[index].value = this.state.turn;
+        this.setState({ data: newData });
+
+        this.switchTurn();
     };
 }
 

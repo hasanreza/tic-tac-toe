@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { IHeaderProps } from '~/types';
-import Logo from '../logo';
 
 /**
  * import styles
@@ -10,8 +9,15 @@ import './style.scss';
 /**
  * import components
  */
+import Logo from '../logo';
+import Button from '../button';
 
-class Base extends React.Component<IHeaderProps> {
+/**
+ * import assets
+ */
+import resetPic from '~/assets/img/reset.svg';
+
+class Header extends React.Component<IHeaderProps> {
     constructor(props: IHeaderProps) {
         super(props);
         this.state = {};
@@ -19,11 +25,14 @@ class Base extends React.Component<IHeaderProps> {
 
     render() {
         return (
-            <div className="p-2">
+            <div className="p-2 d-flex justify-content-between align-items-center">
                 <Logo />
+                <Button onClick={this.props.onReset} className="btn-sm btn-light">
+                    <img width={20} src={resetPic} />
+                </Button>
             </div>
         );
     }
 }
 
-export default Base;
+export default Header;

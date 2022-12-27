@@ -17,13 +17,12 @@ export interface IBoxState {
     size: number;
 }
 
-export interface ITileBoxState {
-    data: ITileData[];
-}
+export interface ITileBoxState {}
 export interface ITileBoxProps {
     width: number;
     turn: string;
-    onClick: () => void;
+    data: ITileData[];
+    onTileClick: (index: number) => void;
 }
 
 export interface ITileProps {
@@ -41,9 +40,16 @@ export interface IXOProps {
 }
 export interface IHeaderProps {
     turn: string;
+    onReset: () => void;
 }
 
 export interface IGameState {
     width: number;
     turn: string;
+    data: ITileData[];
+}
+
+export interface IButtonProps extends IComponentProps {
+    onClick: () => void;
+    className?: string;
 }
