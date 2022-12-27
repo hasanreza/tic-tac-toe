@@ -1,7 +1,7 @@
 @import '../../styles/variables';
 
-$size: 35px;
-$stroke-width: 5px;
+$size: 50px;
+$stroke-width: 10px;
 
 .x,
 .o {
@@ -19,7 +19,7 @@ $stroke-width: 5px;
 }
 
 .x {
-    bottom: 2px;
+    bottom: $size * 0.1;
     &::before,
     &::after {
         content: '';
@@ -40,7 +40,7 @@ $stroke-width: 5px;
     }
 }
 .o {
-    border: $stroke-width/2 solid transparent;
+    border: $stroke-width/4 solid transparent;
     box-shadow: 0 0 0px $stroke-width $secondary inset;
     border-radius: 50%;
 }

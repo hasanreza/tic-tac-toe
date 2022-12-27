@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { IGameBoxProps, IGameBoxState, ITileData } from '~/types';
+import { ITileBoxProps, ITileBoxState, ITileData } from '~/types';
 import isVertical from '~/utilities/isVertical';
 
 /**
@@ -12,7 +12,7 @@ import './style.scss';
  */
 import Tile from '../tile';
 
-class GameBox extends React.Component<IGameBoxProps, IGameBoxState> {
+class TileBox extends React.Component<ITileBoxProps, ITileBoxState> {
     constructor(props: any) {
         super(props);
         this.state = { data: this.generateTileStates() };
@@ -55,4 +55,4 @@ class GameBox extends React.Component<IGameBoxProps, IGameBoxState> {
     };
 }
 
-export default GameBox;
+export default TileBox;

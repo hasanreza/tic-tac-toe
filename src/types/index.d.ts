@@ -17,10 +17,10 @@ export interface IBoxState {
     size: number;
 }
 
-export interface IGameBoxState {
+export interface ITileBoxState {
     data: ITileData[];
 }
-export interface IGameBoxProps {
+export interface ITileBoxProps {
     width: number;
     turn: string;
     onClick: () => void;
@@ -43,7 +43,7 @@ export interface IHeaderProps {
     turn: string;
 }
 
-export interface IContainerState {
+export interface IGameState {
     width: number;
     turn: string;
 }

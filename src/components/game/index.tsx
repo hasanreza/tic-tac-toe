@@ -8,11 +8,11 @@ import './style.scss';
 /**
  * import components
  */
-import GameBox from '../game-box';
-import { IContainerState } from '~/types';
+import TileBox from '../tile-box';
+import { IGameState } from '~/types';
 import Header from '../header';
 
-class Container extends React.Component<Readonly<{}>, IContainerState> {
+class Game extends React.Component<Readonly<{}>, IGameState> {
     constructor(props: any) {
         super(props);
         this.state = { width: this.calcWidth(), turn: this.pickTurn() };
@@ -24,7 +24,7 @@ class Container extends React.Component<Readonly<{}>, IContainerState> {
                 className="position-absolute h-100 top-0 start-0 end-0 mx-auto py-3"
                 style={{ width: this.state.width }}>
                 <Header turn={this.state.turn} />
-                <GameBox
+                <TileBox
                     width={this.state.width}
                     turn={this.state.turn}
                     onClick={this.switchTurn}
@@ -69,4 +69,4 @@ class Container extends React.Component<Readonly<{}>, IContainerState> {
     };
 }
 
-export default Container;
+export default Game;
