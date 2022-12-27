@@ -5,9 +5,14 @@ Color
 $primary: #00abb3;
 $secondary: #eb6440;
 $dark: #3c4048;
-$light: #eff5f5;
+$light: #d6e4e5;
 
 $btn-radius: 25%;
+$btn-shadow-length: 5px;
+$btn-click-move: 2px;
 
 $tile-margin: 10px;
 $tile-radius: $btn-radius;
+
+$xo-size: 50px;
+$xo-stroke-width: 12px;

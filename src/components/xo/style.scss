@@ -1,39 +1,34 @@
 @import '../../styles/variables';
 
-$size: 50px;
-$stroke-width: 10px;
-
 .x,
 .o {
-    width: $size;
-    height: $size;
+    width: $xo-size;
+    height: $xo-size;
     position: relative;
     display: inline-block;
 }
 
 .x {
-    bottom: 5%;
     &::before,
     &::after {
         content: '';
         position: absolute;
-        top: 50%;
-        transform: translateY(50%);
+        top: 25%;
         width: 100%;
-        height: $stroke-width;
+        height: $xo-stroke-width;
         background-color: $primary;
         right: 0;
-        border-radius: $stroke-width;
+        border-radius: $xo-stroke-width;
     }
     &::before {
-        transform: rotate(45deg);
+        transform: translateY(50%) rotate(45deg);
     }
     &::after {
-        transform: rotate(-45deg);
+        transform: translateY(50%) rotate(-45deg);
     }
 }
 .o {
-    border: $stroke-width/4 solid transparent;
-    box-shadow: 0 0 0px $stroke-width $secondary inset;
+    border: $xo-stroke-width/4 solid transparent;
+    box-shadow: 0 0 0px $xo-stroke-width $secondary inset;
     border-radius: 50%;
 }

@@ -76,6 +76,8 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
     };
 
     reset = () => {
+        console.log('reset');
+
         this.setState({ data: this.generateTileStates() });
     };
 
