@@ -1,0 +1,46 @@
+@import '../../styles/variables';
+
+$size: 35px;
+$stroke-width: 5px;
+
+.x,
+.o {
+    width: $size;
+    height: $size;
+    position: relative;
+    display: inline-block;
+}
+.logo {
+    .x,
+    .o {
+        width: $size * 0.65;
+        height: $size * 0.65;
+    }
+}
+
+.x {
+    bottom: 2px;
+    &::before,
+    &::after {
+        content: '';
+        position: absolute;
+        top: 50%;
+        transform: translateY(50%);
+        width: 100%;
+        height: $stroke-width;
+        background-color: $primary;
+        right: 0;
+        border-radius: $stroke-width;
+    }
+    &::before {
+        transform: rotate(45deg);
+    }
+    &::after {
+        transform: rotate(-45deg);
+    }
+}
+.o {
+    border: $stroke-width/2 solid transparent;
+    box-shadow: 0 0 0px $stroke-width $secondary inset;
+    border-radius: 50%;
+}

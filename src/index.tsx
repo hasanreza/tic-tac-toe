@@ -1,7 +1,12 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
-import { App } from './client';
+/**
+ * import styles
+ */
+import './styles/main.scss';
+/**
+ * import components
+ */
+import Container from './components/container';
 
-import './index.scss';
-
-createRoot(document.getElementById('root')!).render(<App temp={true} />);
+createRoot(document.getElementById('root')!).render(<Container />);
