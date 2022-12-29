@@ -20,10 +20,21 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
         this.state = {
             width: this.calcWidth(),
             turn: this.pickTurn(),
-            data: this.generateTileStates(),
+            data: [
+                { id: 0, value: 'x' },
+                { id: 1, value: 'x' },
+                { id: 2, value: 'x' },
+                { id: 3, value: null },
+                { id: 4, value: null },
+                { id: 5, value: null },
+                { id: 6, value: null },
+                { id: 7, value: null },
+                { id: 8, value: null }
+            ],
             active: false,
             players: this.generatePlayers(),
-            rounds: 0
+            rounds: 0,
+            drawLine: false
         };
     }
 
@@ -31,7 +42,7 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
         return (
             <>
                 <div
-                    className="position-absolute h-100 top-0 start-0 end-0 mx-auto py-3"
+                    className="position-absolute h-100 top-0 start-0 end-0 mx-auto py-3 d-flex flex-column justify-content-around"
                     style={{ width: this.state.width }}>
                     <Header turn={this.state.turn} onReset={this.reset} />
 
@@ -40,6 +51,7 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
                         turn={this.state.turn}
                         onTileClick={this.handleTileClick}
                         data={this.state.data}
+                        drawLine={this.state.drawLine}
                     />
 
                     <Footer players={this.state.players} rounds={this.state.rounds} />
@@ -92,11 +104,11 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
     reset = () => {
         console.log('reset');
 
-        this.setState({ data: this.generateTileStates() });
+        this.setState({ data: this.generateTileStates(), drawLine: false });
     };
 
     generateTileStates = () => {
-        return [...Array(9).keys()].map((index) => {
+        const data = [...Array(9).keys()].map((index) => {
             const tileData: ITileData = {
                 id: index,
                 value: null
@@ -104,6 +116,8 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
 
             return tileData;
         });
+        console.log(JSON.stringify(data));
+        return data;
     };
 
     generatePlayers = () => {
@@ -129,7 +143,7 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
 
         const dots = utils.checkResult(newData);
         if (dots.length) {
-            this.setState({ active: false });
+            this.setState({ drawLine: true });
         }
     };
 
@@ -137,7 +151,9 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
         this.setState({ active: true });
     };
 
-    gameOver = () => {};
+    stopGame = () => {
+        this.setState({ active: false });
+    };
 }
 
 export default Game;
