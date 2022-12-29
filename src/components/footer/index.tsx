@@ -19,26 +19,24 @@ class Footer extends React.Component<IFooterProps> {
             player2 = this.props.players[1];
 
         return (
-            <div className="row gx-0 px-2">
+            <div className="row gx-4 px-2">
                 <div className="col">
-                    <Label className="bg-primary">
-                        x ({player1.name})<br />
-                        <span className="h3">{player1.score}</span>
+                    <Label className="bg-primary flex-column">
+                        <span className="h3 mb-0">{player1.score}</span>x ({player1.name})
                     </Label>
                 </div>
                 <div className="col">
-                    <Label className="bg-light">
-                        ties
-                        <br />
-                        <span className="h3">
+                    <Label className="bg-light flex-column">
+                        <span className="h3 mb-0">
                             {this.props.rounds - player1.score - player2.score}
                         </span>
+                        ties
                     </Label>
                 </div>
                 <div className="col">
-                    <Label className="bg-secondary">
-                        o({player2.name})<br />
-                        <span className="h3">{player2.score}</span>
+                    <Label className="bg-secondary flex-column">
+                        <span className="h3 mb-0">{player2.score}</span>
+                        o({player2.name})
                     </Label>
                 </div>
             </div>

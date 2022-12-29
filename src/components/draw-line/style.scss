@@ -1,0 +1,45 @@
+@import '../../styles/variables';
+
+.line {
+    position: absolute;
+    height: $line-height;
+    width: $line-width;
+    left: (100% - $line-width)/2;
+    z-index: 1;
+    transform: translateY(-50%);
+    max-width: none;
+
+    &.oblique {
+        width: $line-oblique-width;
+        left: (100% - $line-oblique-width)/2;
+        transform: translateY(-50%) rotate(45deg);
+    }
+    &.vertical {
+        transform: translateY(-50%) rotate(90deg);
+        left: (100% - $line-width)/2 - (100% /3);
+    }
+    & div {
+        border-radius: $base-radius;
+        width: 0;
+        transition: width 2s linear;
+    }
+
+    &.line-primary div {
+        background-color: $primary;
+        width: 100%;
+    }
+
+    &.line-secondary div {
+        background-color: $secondary;
+        width: 100%;
+    }
+}
+
+@keyframes slideWidth {
+    0% {
+        width: 0;
+    }
+    0% {
+        width: 100%;
+    }
+}

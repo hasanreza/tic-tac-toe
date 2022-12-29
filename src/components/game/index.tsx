@@ -23,7 +23,8 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
             data: this.generateTileStates(),
             active: false,
             players: this.generatePlayers(),
-            rounds: 0
+            rounds: 0,
+            drawLine: false
         };
     }
 
@@ -31,7 +32,7 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
         return (
             <>
                 <div
-                    className="position-absolute h-100 top-0 start-0 end-0 mx-auto py-3"
+                    className="position-absolute h-100 top-0 start-0 end-0 mx-auto py-3 d-flex flex-column justify-content-around"
                     style={{ width: this.state.width }}>
                     <Header turn={this.state.turn} onReset={this.reset} />
 
@@ -40,6 +41,7 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
                         turn={this.state.turn}
                         onTileClick={this.handleTileClick}
                         data={this.state.data}
+                        drawLine={this.state.drawLine}
                     />
 
                     <Footer players={this.state.players} rounds={this.state.rounds} />
@@ -92,7 +94,7 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
     reset = () => {
         console.log('reset');
 
-        this.setState({ data: this.generateTileStates() });
+        this.setState({ data: this.generateTileStates(), drawLine: false });
     };
 
     generateTileStates = () => {
@@ -129,7 +131,7 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
 
         const dots = utils.checkResult(newData);
         if (dots.length) {
-            this.setState({ active: false });
+            this.setState({ drawLine: true });
         }
     };
 
@@ -137,7 +139,9 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
         this.setState({ active: true });
     };
 
-    gameOver = () => {};
+    stopGame = () => {
+        this.setState({ active: false });
+    };
 }
 
 export default Game;
