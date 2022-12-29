@@ -49,4 +49,16 @@
     .o {
         box-shadow: 0 0 0px $xo-stroke-width * $label-icon-scale $dark inset;
     }
+
+    &.text-light {
+        .x {
+            &::after,
+            &::before {
+                background-color: $light;
+            }
+        }
+        .o {
+            box-shadow: 0 0 0px $xo-stroke-width * $label-icon-scale $light inset;
+        }
+    }
 }

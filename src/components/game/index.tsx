@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 /**
  * import styles
  */
@@ -9,11 +8,11 @@ import './style.scss';
  * import components
  */
 import TileBox from '../tile-box';
-import { IGameState, ITileData } from '~/types';
+import { IGameState, IPlayer, ITileData } from '~/types';
 import Header from '../header';
 import Footer from '../footer';
-import checkResult from '~/utils/check-result';
 import Overlay from '../overlay';
+import utils from '~/utils';
 
 class Game extends React.Component<Readonly<{}>, IGameState> {
     constructor(props: any) {
@@ -22,7 +21,9 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
             width: this.calcWidth(),
             turn: this.pickTurn(),
             data: this.generateTileStates(),
-            active: false
+            active: false,
+            players: this.generatePlayers(),
+            rounds: 0
         };
     }
 
@@ -32,7 +33,7 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
                 <div
                     className="position-absolute h-100 top-0 start-0 end-0 mx-auto py-3"
                     style={{ width: this.state.width }}>
-                    <Header turn={this.state.turn} onReset={() => this.reset()} />
+                    <Header turn={this.state.turn} onReset={this.reset} />
 
                     <TileBox
                         width={this.state.width}
@@ -41,7 +42,7 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
                         data={this.state.data}
                     />
 
-                    <Footer></Footer>
+                    <Footer players={this.state.players} rounds={this.state.rounds} />
 
                     <Overlay show={!this.state.active} onClick={this.handleOverlayClick}>
                         <div className="h1 text-primary">Start</div>
@@ -105,6 +106,17 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
         });
     };
 
+    generatePlayers = () => {
+        return [
+            { name: 'you', score: 0, isCPU: false },
+            {
+                name: 'cpu',
+                score: 0,
+                isCPU: true
+            }
+        ];
+    };
+
     handleTileClick = (index: number) => {
         if (this.state.data[index].value) return;
 
@@ -112,13 +124,20 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
         newData[index].value = this.state.turn;
         this.setState({ data: newData });
 
-        // if (checkResult(newData))
+        // if ()
         this.switchTurn();
+
+        const dots = utils.checkResult(newData);
+        if (dots.length) {
+            this.setState({ active: false });
+        }
     };
 
     handleOverlayClick = () => {
         this.setState({ active: true });
     };
+
+    gameOver = () => {};
 }
 
 export default Game;

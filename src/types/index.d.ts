@@ -49,11 +49,23 @@ export interface IHeaderProps {
     onReset: () => void;
 }
 
+export interface IPlayer {
+    isCPU: boolean;
+    score: number;
+    name: string;
+}
 export interface IGameState {
     width: number;
     turn: string;
     data: ITileData[];
     active: boolean;
+    players: IPlayer[];
+    rounds: number;
+}
+
+export interface IFooterProps {
+    players: IPlayer[];
+    rounds: number;
 }
 
 export interface IButtonProps extends IComponentProps, IElementProps {}

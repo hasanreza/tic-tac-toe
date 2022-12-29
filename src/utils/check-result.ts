@@ -12,6 +12,8 @@ const checkResult = (data: ITileData[]) => {
                 !second.value ||
                 //there is no number between them
                 (j - i) % 2 !== 0 ||
+                //it's continuosly but its not horizontally
+                (j === i + 2 && i % 3 !== 0) ||
                 //they are not in line
                 (i !== 2 && j - i === 4)
             )
@@ -24,5 +26,4 @@ const checkResult = (data: ITileData[]) => {
     }
     return [];
 };
-
 export default checkResult;

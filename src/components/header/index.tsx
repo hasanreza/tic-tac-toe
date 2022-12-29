@@ -31,12 +31,14 @@ class Header extends React.Component<IHeaderProps> {
                 <div className="col">
                     <Logo />
                 </div>
+
                 <div className="col text-center">
-                    <Label className="bg-light bg-opacity-25">
+                    <Label className="bg-light text-light bg-opacity-25">
                         <XO value={this.props.turn} />
                         <span className="ms-2">turn</span>
                     </Label>
                 </div>
+
                 <div className="col text-end">
                     <Button onClick={this.props.onReset} className="btn-sm btn-light me-1">
                         <img width={20} src={resetPic} />

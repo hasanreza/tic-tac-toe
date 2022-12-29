@@ -5,12 +5,13 @@
     height: 100%;
     top: 0;
     right: 0;
-    background-color: rgba($light, 0.3);
+    background-color: rgba($light, 0.1);
     backdrop-filter: blur(5px);
     z-index: 2;
     cursor: pointer;
     opacity: 1;
     transition: $transition-fadeIn;
+    text-shadow: 0 1px 0px rgba(255, 255, 255, 0.5);
 
     &.overlay-hidden {
         opacity: 0;
