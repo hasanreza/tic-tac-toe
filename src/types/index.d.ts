@@ -30,6 +30,7 @@ export interface ITileBoxProps {
     data: ITileData[];
     onTileClick: (index: number) => void;
     drawLine: boolean;
+    handleTransitionEnd: () => void;
 }
 
 export interface ITileProps {
@@ -59,10 +60,10 @@ export interface IGameState {
     width: number;
     turn: string;
     data: ITileData[];
-    active: boolean;
     players: IPlayer[];
     rounds: number;
     drawLine: boolean;
+    showOverlay: boolean;
 }
 
 export interface IFooterProps {
@@ -72,6 +73,8 @@ export interface IFooterProps {
 export interface IDrawLineProps {
     turn: string;
     points: number[];
+    tileWidth: number;
+    handleTransitionEnd: () => void;
 }
 
 export interface IButtonProps extends IComponentProps, IElementProps {}

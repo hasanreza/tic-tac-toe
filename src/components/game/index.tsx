@@ -15,26 +15,18 @@ import Overlay from '../overlay';
 import utils from '~/utils';
 
 class Game extends React.Component<Readonly<{}>, IGameState> {
+    private isActive = false;
+
     constructor(props: any) {
         super(props);
         this.state = {
             width: this.calcWidth(),
             turn: this.pickTurn(),
-            data: [
-                { id: 0, value: 'x' },
-                { id: 1, value: 'x' },
-                { id: 2, value: 'x' },
-                { id: 3, value: null },
-                { id: 4, value: null },
-                { id: 5, value: null },
-                { id: 6, value: null },
-                { id: 7, value: null },
-                { id: 8, value: null }
-            ],
-            active: false,
+            data: this.generateTileStates(),
             players: this.generatePlayers(),
             rounds: 0,
-            drawLine: false
+            drawLine: false,
+            showOverlay: true
         };
     }
 
@@ -44,7 +36,7 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
                 <div
                     className="position-absolute h-100 top-0 start-0 end-0 mx-auto py-3 d-flex flex-column justify-content-around"
                     style={{ width: this.state.width }}>
-                    <Header turn={this.state.turn} onReset={this.reset} />
+                    <Header turn={this.state.turn} onReset={this.resetGame} />
 
                     <TileBox
                         width={this.state.width}
@@ -52,11 +44,12 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
                         onTileClick={this.handleTileClick}
                         data={this.state.data}
                         drawLine={this.state.drawLine}
+                        handleTransitionEnd={this.resetRound}
                     />
 
                     <Footer players={this.state.players} rounds={this.state.rounds} />
 
-                    <Overlay show={!this.state.active} onClick={this.handleOverlayClick}>
+                    <Overlay show={this.state.showOverlay} onClick={this.handleOverlayClick}>
                         <div className="h1 text-primary">Start</div>
                     </Overlay>
                 </div>
@@ -101,10 +94,26 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
         this.setState({ turn: this.state.turn == 'x' ? 'o' : 'x' });
     };
 
-    reset = () => {
-        console.log('reset');
+    resetRound = (tie?: boolean) => {
+        this.setState({
+            data: this.generateTileStates(),
+            drawLine: false,
+            showOverlay: true,
+            rounds: this.state.rounds + 1
+        });
+        if (!tie) this.setState({ players: this.getNewPlayerScores() });
+        this.isActive = true;
+    };
 
-        this.setState({ data: this.generateTileStates(), drawLine: false });
+    resetGame = () => {
+        this.setState({
+            rounds: 0,
+            data: this.generateTileStates(),
+            drawLine: false,
+            showOverlay: false,
+            players: this.generatePlayers()
+        });
+        this.isActive = true;
     };
 
     generateTileStates = () => {
@@ -132,27 +141,37 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
     };
 
     handleTileClick = (index: number) => {
-        if (this.state.data[index].value) return;
+        if (this.state.data[index].value || !this.isActive) return;
 
         const newData = [...this.state.data];
         newData[index].value = this.state.turn;
+
         this.setState({ data: newData });
 
-        // if ()
-        this.switchTurn();
-
         const dots = utils.checkResult(newData);
+        //someone won
         if (dots.length) {
+            this.isActive = false;
             this.setState({ drawLine: true });
+        } else this.switchTurn();
+
+        if (!utils.canPlay(newData)) {
+            this.resetRound(true);
         }
     };
 
     handleOverlayClick = () => {
-        this.setState({ active: true });
+        this.setState({ showOverlay: false });
+        this.isActive = true;
     };
 
-    stopGame = () => {
-        this.setState({ active: false });
+    getNewPlayerScores = () => {
+        const players = [...this.state.players],
+            index = this.state.turn === 'x' ? 0 : 1;
+
+        players[index].score++;
+
+        return players;
     };
 }
 

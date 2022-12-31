@@ -34,6 +34,8 @@ class TileBox extends React.Component<ITileBoxProps, ITileBoxState> {
                         <DrawLine
                             points={utils.checkResult(this.props.data)}
                             turn={this.props.turn}
+                            tileWidth={this.props.width / 3}
+                            handleTransitionEnd={() => this.props.handleTransitionEnd()}
                         />
                     )}
                 </div>

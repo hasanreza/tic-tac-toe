@@ -4,25 +4,21 @@
     position: absolute;
     height: $line-height;
     width: $line-width;
-    left: 0;
-    right: 0;
-    margin: 0 auto;
+    left: (100% - $line-width)/2;
     top: 50%;
     z-index: 1;
-    transform: translateY(-50%);
     max-width: none;
 
     &.oblique {
         width: $line-oblique-width;
-        transform: translateY(-50%) rotate(45deg);
+        left: (100% - $line-oblique-width)/2;
     }
     &.vertical {
-        transform: translateY(-50%) rotate(90deg);
     }
     & div {
         border-radius: $base-radius;
         width: 0;
-        transition: width 2s linear;
+        transition: width 1s linear;
     }
 
     &.line-primary div {
