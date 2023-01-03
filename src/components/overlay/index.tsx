@@ -20,4 +20,4 @@ const Overlay = (props: IOverlayProps) => (
     </div>
 );
 
-export default Overlay;
+export default React.memo(Overlay, (prev, next) => prev.show === next.show);

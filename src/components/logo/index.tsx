@@ -10,13 +10,11 @@ import './style.scss';
  */
 import XO from '../xo';
 
-const Logo = () => {
-    return (
-        <div className="logo">
-            <XO value="x" />
-            <XO value="o" />
-        </div>
-    );
-};
+const Logo = () => (
+    <div className="logo">
+        <XO value="x" />
+        <XO value="o" />
+    </div>
+);
 
-export default Logo;
+export default React.memo(Logo);

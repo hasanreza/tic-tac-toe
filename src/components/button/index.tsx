@@ -10,19 +10,10 @@ import './style.scss';
  * import components
  */
 
-class Button extends React.PureComponent<IButtonProps> {
-    constructor(props: any) {
-        super(props);
-        this.state = {};
-    }
+const Button = (props: IButtonProps) => (
+    <button className={'btn ' + props.className} onClick={props.onClick}>
+        {props.children}
+    </button>
+);
 
-    render() {
-        return (
-            <button className={'btn ' + this.props.className} onClick={this.props.onClick}>
-                {this.props.children}
-            </button>
-        );
-    }
-}
-
-export default Button;
+export default React.memo(Button, (prev, next) => prev.className === next.className);

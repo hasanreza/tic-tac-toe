@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { ITileBoxProps, ITileBoxState, ITileData } from '~/types';
+import { ITileBoxProps } from '~/types';
 import utils from '~/utils';
 
 /**
@@ -13,37 +13,21 @@ import './style.scss';
 import Tile from '../tile';
 import DrawLine from '../draw-line';
 
-class TileBox extends React.PureComponent<ITileBoxProps, ITileBoxState> {
-    constructor(props: ITileBoxProps) {
-        super(props);
-        this.state = {
-            drawLine: false
-        };
-    }
-    render() {
-        return (
-            <>
-                <div
-                    className="game-box row g-0"
-                    style={{ width: this.props.width, height: this.props.width }}>
-                    {this.props.data.map((tileData) => (
-                        <Tile data={tileData} key={tileData.id} onClick={this.props.onTileClick} />
-                    ))}
+const TileBox = (props: ITileBoxProps) => (
+    <div className="game-box row g-0" style={{ width: props.width, height: props.width }}>
+        {props.data.map((tileData) => (
+            <Tile data={tileData} key={tileData.id} onClick={props.onTileClick} />
+        ))}
 
-                    {this.props.drawLine && (
-                        <DrawLine
-                            points={utils.checkResult(this.props.data)}
-                            turn={this.props.turn}
-                            tileWidth={this.props.width / 3}
-                            handleTransitionEnd={() => this.props.handleTransitionEnd()}
-                        />
-                    )}
-                </div>
-            </>
-        );
-    }
+        {props.drawLine && (
+            <DrawLine
+                points={utils.checkResult(props.data)}
+                turn={props.turn}
+                tileWidth={props.width / 3}
+                handleTransitionEnd={() => props.handleTransitionEnd()}
+            />
+        )}
+    </div>
+);
 
-    calcDimensions = () => (utils.isVertical() ? window.innerWidth : window.innerHeight) * 0.75;
-}
-
-export default TileBox;
+export default React.memo(TileBox, (prev, next) => prev.data === next.data);

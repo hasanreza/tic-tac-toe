@@ -10,15 +10,11 @@ import './style.scss';
  * import components
  */
 
-class Label extends React.PureComponent<ILabelProps> {
-    render() {
-        return (
-            <span
-                className={`label d-flex align-items-center justify-content-center p-2 ${this.props.className}`}>
-                {this.props.children}
-            </span>
-        );
-    }
-}
+const Label = (props: ILabelProps) => (
+    <span
+        className={`label d-flex align-items-center justify-content-center p-2 ${props.className}`}>
+        {props.children}
+    </span>
+);
 
 export default Label;

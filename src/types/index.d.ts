@@ -23,7 +23,6 @@ export interface IBoxState {
     size: number;
 }
 
-export interface ITileBoxState {}
 export interface ITileBoxProps {
     width: number;
     turn: string;
