@@ -7,9 +7,10 @@ import XO from '../xo';
  */
 import './style.scss';
 
-class Tile extends React.Component<ITileProps> {
+class Tile extends React.PureComponent<ITileProps> {
     render() {
         const { id, value } = this.props.data;
+        console.log('tile rendered');
 
         return (
             <div

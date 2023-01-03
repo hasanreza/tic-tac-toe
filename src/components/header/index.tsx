@@ -19,7 +19,7 @@ import resetPic from '~/assets/img/reset.svg';
 import Label from '../label';
 import XO from '../xo';
 
-class Header extends React.Component<IHeaderProps> {
+class Header extends React.PureComponent<IHeaderProps> {
     constructor(props: IHeaderProps) {
         super(props);
         this.state = {};

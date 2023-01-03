@@ -13,7 +13,7 @@ import './style.scss';
 import Tile from '../tile';
 import DrawLine from '../draw-line';
 
-class TileBox extends React.Component<ITileBoxProps, ITileBoxState> {
+class TileBox extends React.PureComponent<ITileBoxProps, ITileBoxState> {
     constructor(props: ITileBoxProps) {
         super(props);
         this.state = {

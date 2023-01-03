@@ -11,7 +11,7 @@ import './style.scss';
  * import components
  */
 
-class Footer extends React.Component<IFooterProps> {
+class Footer extends React.PureComponent<IFooterProps> {
     render() {
         if (this.props.players.length != 2) throw new Error('there must be 2 players');
 

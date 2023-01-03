@@ -10,7 +10,7 @@ import './style.scss';
  * import components
  */
 
-class DrawLine extends React.Component<IDrawLineProps> {
+class DrawLine extends React.PureComponent<IDrawLineProps> {
     private element: React.RefObject<HTMLDivElement>;
     private transforms = {
         translateY: 'translateY(-50%)',

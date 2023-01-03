@@ -14,7 +14,7 @@ import Footer from '../footer';
 import Overlay from '../overlay';
 import utils from '~/utils';
 
-class Game extends React.Component<Readonly<{}>, IGameState> {
+class Game extends React.PureComponent<Readonly<{}>, IGameState> {
     private isActive = false;
 
     constructor(props: any) {
@@ -125,7 +125,6 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
 
             return tileData;
         });
-        console.log(JSON.stringify(data));
         return data;
     };
 
@@ -143,8 +142,7 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
     handleTileClick = (index: number) => {
         if (this.state.data[index].value || !this.isActive) return;
 
-        const newData = [...this.state.data];
-        newData[index].value = this.state.turn;
+        const newData = this.getUpdatedData(this.state.data, index, { value: this.state.turn });
 
         this.setState({ data: newData });
 
@@ -158,6 +156,12 @@ class Game extends React.Component<Readonly<{}>, IGameState> {
         if (!utils.canPlay(newData)) {
             this.resetRound(true);
         }
+    };
+
+    getUpdatedData = (data: ITileData[], index: number, updatedProp: object) => {
+        const newData = [...data];
+        newData.splice(index, 1, { ...newData[index], ...updatedProp });
+        return newData;
     };
 
     handleOverlayClick = () => {
