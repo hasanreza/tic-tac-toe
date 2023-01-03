@@ -9,15 +9,15 @@ import './style.scss';
 /**
  * import components
  */
-import Logo from '../logo';
-import Button from '../button';
+import Logo from './logo';
+import Button from '../../common/button';
 
 /**
  * import assets
  */
 import resetPic from '~/assets/img/reset.svg';
-import Label from '../label';
-import XO from '../xo';
+import Label from '../../common/label';
+import XO from '../../common/xo';
 
 const Header = (props: IHeaderProps) => (
     <div className="px-2 gx-0 row justify-content-between align-items-center">

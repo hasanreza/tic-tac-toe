@@ -8,7 +8,7 @@ import './style.scss';
 /**
  * import components
  */
-import XO from '../xo';
+import XO from '../../../common/xo';
 
 const Logo = () => (
     <div className="logo">

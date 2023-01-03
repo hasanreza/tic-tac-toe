@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { IFooterProps } from '~/types';
-import Label from '../label';
+import Label from '../../common/label';
 
 /**
  * import styles

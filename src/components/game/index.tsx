@@ -7,11 +7,11 @@ import './style.scss';
 /**
  * import components
  */
-import TileBox from '../tile-box';
+import TileBox from './tile-box';
 import { IGameState, IPlayer, ITileData } from '~/types';
-import Header from '../header';
-import Footer from '../footer';
-import Overlay from '../overlay';
+import Header from './header';
+import Footer from './footer';
+import Overlay from './overlay';
 import utils from '~/utils';
 
 class Game extends React.PureComponent<Readonly<{}>, IGameState> {

@@ -10,8 +10,8 @@ import './style.scss';
 /**
  * import components
  */
-import Tile from '../tile';
-import DrawLine from '../draw-line';
+import Tile from './tile';
+import DrawLine from './draw-line';
 
 const TileBox = (props: ITileBoxProps) => (
     <div className="game-box row g-0" style={{ width: props.width, height: props.width }}>

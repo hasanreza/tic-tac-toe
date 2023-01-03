@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { ITileProps } from '~/types';
-import XO from '../xo';
+import XO from '../../../common/xo';
 
 /**
  * import styles
